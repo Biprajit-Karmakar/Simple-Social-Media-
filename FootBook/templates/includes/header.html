@@ -1,0 +1,27 @@
+{% load static %}
+<nav>
+    <div class="nav-left">
+        
+        <a href="#" class="logo active">
+            <img src="{% static 'img/bookicon2.jpg' %}" alt="">
+            <h3>FootBook</h3>
+        </a>
+    </div>
+
+    <div class="nav-middle">
+        <a href="{% url 'index' %}" class="active">
+            <i class="fa fa-home"></i>
+        </a>
+        <a href="{% url 'post' %}">
+            <i class="fas fa-plus-square"></i>
+        </a>
+    </div>
+
+    <div class="nav-right">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn auth_btn">Log Out</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn auth_btn">Log In</a>
+        {% endif %}
+    </div>
+</nav>

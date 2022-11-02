@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %} 
+
+{% block content %}
+{% include 'includes/left-sidebar.html' %}
+
+<div class="middle-panel">
+    {% for feed in feeds %}
+    <div class="post">
+        <div class="post-top">
+            <div class="dp">
+                <img src="#" alt="userProfile">
+            </div>
+            <div class="post-info">
+                <p class="name">{{feed.posted_by}}</p>
+                <span class="time">{{ feed.posted_at|timesince }} ago</span>
+            </div>
+        </div>
+        <div class="post-content">
+            <h4>{{feed.title}}</h4><br>
+            {{ feed.description }}
+            {% if feed.image %}
+                    <img src="{{ feed.image.url }}" alt= "{{ feed.title }}" class="w-full h-72 object-cover">
+            {% endif %}
+        </div>
+        
+        <div class="post-bottom">
+            <div class="action">
+                
+                <a href="{% url 'view_post' feed.id %}">
+                    <i class="far fa-eye"></i>
+                    <span>View</span>
+                </a>
+            </div>
+            <div class="action">
+                <a href="{% url 'edit_post' feed.id %}">
+                    <i class="fas fa-edit"></i>
+                    <span>Edit</span>
+                </a>
+            </div>
+            <div class="action">
+                <a href="{% url 'delete_post' feed.id %}">
+                    <i class="fas fa-trash"></i>
+                    <span>Delete</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+
+{% include 'includes/right-sidebar.html' %}
+{% endblock %}
+    

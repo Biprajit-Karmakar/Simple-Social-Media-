@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    {% include 'includes/left-sidebar.html' %}
+        <main class="middle-panel">
+           <form class="form" enctype="multipart/form-data" action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="">
+                        <label for="">{{ field.label_tag }} </label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <div class="postButtons">
+                    <a class="cancelBtn" href="{% url 'index' %}">Cancel</a>
+                    <button class="PostSubmitBtn" type="submit">Post</button>
+                </div>
+           </form>
+        </main>
+    {% include 'includes/right-sidebar.html' %}
+{% endblock %}
+ 
